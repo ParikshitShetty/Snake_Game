@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Snake Game</title>
+
+    <style>
+      body { font-family: Arial, sans-serif; display: flex; flex-direction: row; align-items: center; justify-content: space-around; }
+      canvas { border: 1px solid black; }
+      #leaderboard { margin-top: 20px; width: 200px; }
+  </style>
+  </head>
+  <body>
+    <!-- <div id="app"></div> -->
+    <script type="module" src="/main.js"></script>
+    
+    <div >
+      <h1>Snake Game</h1>
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+    </div>
+    <script src="./snake.js"></script>
+    <div id="leaderboardsection" class="">
+      <h2 class="font-bold text-2xl">Leaderboard</h2>
+      <table>
+      <thead class="w-[300px] ">
+      <tr class="">
+      <th class="w-[200px]">Rank</th><th class="w-[200px]">Player Name</th><th class="w-[200px]">Score</th>
+      </tr></thead>
+      <tbody  id="leaderboard-body" class="text-center">
+      <!-- Leaderboard entries will go here -->
+      </tbody>
+      </table>
+      </div>
+  </body>
+</html>
