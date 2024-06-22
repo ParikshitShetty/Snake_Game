@@ -46,16 +46,31 @@ function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
 }
 
 function drawEyes(x, y) {
+    const eyeOffsetX = 6;
+    const eyeOffsetY = 4;
+    const eyeRadius = 3;
+    const pupilRadius = 1; 
+
+    // Left eye
     ctx.fillStyle = "white";
     ctx.beginPath();
-    ctx.arc(x + 4, y + 4, 3, 0, Math.PI * 2);
-    ctx.arc(x + box - 8, y + 4, 3, 0, Math.PI * 2);
+    ctx.arc(x + eyeOffsetX, y + eyeOffsetY, eyeRadius, 0, Math.PI * 2);
     ctx.fill();
 
     ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.arc(x + 4, y + 4, 1, 0, Math.PI * 2);
-    ctx.arc(x + box - 8, y + 4, 1, 0, Math.PI * 2);
+    ctx.arc(x + eyeOffsetX, y + eyeOffsetY, pupilRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Right eye
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.arc(x + box - eyeOffsetX, y + eyeOffsetY, eyeRadius, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(x + box - eyeOffsetX, y + eyeOffsetY, pupilRadius, 0, Math.PI * 2);
     ctx.fill();
 }
 
@@ -66,20 +81,15 @@ function draw() {
     
     // Draw the snake
     for (let i = 0; i < snake.length; i++) {
-        // ctx.fillStyle = (i == 0) ? "green" : "brown";
-        // ctx.fillRect(snake[i].x, snake[i].y, box, box);
-        
-        // ctx.strokeStyle = "red";
-        // ctx.strokeRect(snake[i].x, snake[i].y, box, box);
 
 
         let gradient = ctx.createLinearGradient(snake[i].x, snake[i].y, snake[i].x + box, snake[i].y + box);
-        gradient.addColorStop(0, (i == 0) ? "#4caf50" : "#795548");
-        gradient.addColorStop(1, (i == 0) ? "#388e3c" : "#5d4037");
+        gradient.addColorStop(0, (i == 0) ? "#4caf50" : "#00FFFF"); //#795548
+        gradient.addColorStop(1, (i == 0) ? "#388e3c" : "#00FFFF"); //#5d4037
         ctx.fillStyle = gradient;
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
         
-        ctx.strokeStyle = "red";
+        // ctx.strokeStyle = "red";
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
 
         // Draw eyes on the head
@@ -87,15 +97,6 @@ function draw() {
             drawEyes(snake[i].x, snake[i].y);
         }
     }
-    
-    // // Draw the food
-    // ctx.fillStyle = "red";
-    // ctx.fillRect(food.x, food.y, box, box);
-    
-    // // Draw the score
-    // ctx.fillStyle = "white";
-    // ctx.font = "45px Changa one";
-    // ctx.fillText(score, 2 * box, 1.6 * box);
 
     ctx.fillStyle = "red";
     roundRect(ctx, food.x, food.y, box, box, 5, true, false);
